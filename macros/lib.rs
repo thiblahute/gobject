@@ -38,6 +38,7 @@ pub fn derive_properties(item: TokenStream) -> TokenStream {
 }
 
 #[proc_macro_attribute]
+#[proc_macro_error::proc_macro_error]
 pub fn class(attr: TokenStream, item: TokenStream) -> TokenStream {
     use gobject_core::{ClassDefinition, ClassOptions};
 
@@ -84,6 +85,7 @@ pub fn class(attr: TokenStream, item: TokenStream) -> TokenStream {
 }
 
 #[proc_macro_attribute]
+#[proc_macro_error::proc_macro_error]
 pub fn interface(attr: TokenStream, item: TokenStream) -> TokenStream {
     use gobject_core::{InterfaceDefinition, InterfaceOptions};
 
@@ -140,6 +142,7 @@ pub fn serde_cast(input: TokenStream) -> TokenStream {
 
 #[cfg(any(feature = "gtk4", feature = "gio"))]
 #[proc_macro_attribute]
+#[proc_macro_error::proc_macro_error]
 pub fn group_actions(attr: TokenStream, item: TokenStream) -> TokenStream {
     let errors = Errors::new();
     let tokens = util::parse::<syn::ItemImpl>(item.into(), &errors)
@@ -153,6 +156,7 @@ pub fn group_actions(attr: TokenStream, item: TokenStream) -> TokenStream {
 
 #[cfg(feature = "gtk4")]
 #[proc_macro_attribute]
+#[proc_macro_error::proc_macro_error]
 pub fn gtk4_widget(attr: TokenStream, item: TokenStream) -> TokenStream {
     use gobject_core::{ClassDefinition, ClassOptions};
 
